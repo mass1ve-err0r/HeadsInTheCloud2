@@ -1,0 +1,40 @@
+{% extends '_Foundation.jinja2' %}
+
+{% macro generateCard(headerName) -%}
+    <div class="col pb-3">
+        <a href="{{ url_for('HeaderBrowserBP.viewHeader', version=secondNavbarIOS, framework=frame, hdr=headerName) }}" target="_self">
+            <div class="ccard">
+                <div class="ccard-body d-flex align-items-center justify-content-center">
+                    <h2 class="text-break">{{ headerName }}</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endmacro %}
+
+{% block additionalnav %}
+    <nav class="top pb-3" aria-label="breadcrumb" style="top: 56px; width: 100%; --bs-breadcrumb-divider: '>';">
+        <div class="container">
+            <ol class="breadcrumb text-white p-1">
+                <li class="breadcrumb-item"><a class="anothergray" href="{{ url_for('HeaderBrowserBP.home')}}">Home</a></li>
+                <li class="breadcrumb-item"><a class="anothergray" href="{{ url_for('HeaderBrowserBP.selectSDK')}}">SDKs</a></li>
+                <li class="breadcrumb-item"><a class="anothergray" href="{{ url_for('HeaderBrowserBP.selectFramework', version=secondNavbarIOS)}}">{{ secondNavbarIOS }}</a></li>
+                <li class="breadcrumb-item" aria-current="page">{{ frame }}</li>
+            </ol>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1">
+            <h3 class="text-white pb-3">All Headers</h3>
+            {% if heads %}
+                {% for h in heads %}
+                    {{ generateCard(h) }}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
