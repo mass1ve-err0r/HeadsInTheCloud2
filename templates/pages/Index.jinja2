@@ -1,0 +1,17 @@
+{% extends '_Foundation.jinja2' %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <div class="container text-center">
+                <h1 class="text-white pb-2">Welcome to Heads In The Cloud <span style="font-weight: bold; font-style: italic;">2</span></h1>
+                <br>
+                <p class="lead text-white pb-2">
+                    Back with a fresh redesign and faster access times.<br>
+                    Powered by publicly available SDKs.
+                </p>
+                <a class="btn btn-primary" href="{{ url_for('HeaderBrowserBP.selectSDK')}}" role="button">Start browsing</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
