@@ -1,0 +1,46 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #2D2B2E;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.anothergray {
+    color: #857f8c !important;
+}
+
+
+.ccard {
+    color: #c1c1c1;
+    background-color: #1c1c1c;
+    height: 75px;
+    line-height: 75px;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.ccard:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    color: white !important;
+}
+
+.ccard-body {
+    height: 100%;
+    width: auto;
+    padding-top: 7px;
+}
+
+@media screen and (max-width: 600px) {
+  div.ccard-body > h2 {
+    font-size: 4vw;
+  }
+}
