@@ -1,0 +1,41 @@
+{% extends '_Foundation.jinja2' %}
+
+{% macro generateCard(frameworkName) -%}
+    <div class="col pb-3">
+        <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=secondNavbarIOS, framework=frameworkName) }}" target="_blank">
+            <div class="ccard">
+                <div class="ccard-body d-flex align-items-center justify-content-center">
+                    <h2 class="text-break">{{ frameworkName }}</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endmacro %}
+
+{% block additionalnav %}
+    <nav class="top pb-3" aria-label="breadcrumb" style="top: 56px; width: 100%; --bs-breadcrumb-divider: '>';">
+        <div class="container">
+            <ol class="breadcrumb text-white p-1">
+                <li class="breadcrumb-item"><a class="anothergray" href="{{ url_for('HeaderBrowserBP.home')}}">Home</a></li>
+                <li class="breadcrumb-item"><a class="anothergray" href="{{ url_for('HeaderBrowserBP.selectSDK')}}">SDKs</a></li>
+                <li class="breadcrumb-item" aria-current="page">{{ secondNavbarIOS }}</li>
+            </ol>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1">
+            <h3 class="text-white pb-3">Public Frameworks</h3>
+            {% for f in fpub %}
+                {{ generateCard(f) }}
+            {% endfor %}
+            <h3 class="text-white pt-3 pb-3">Private Frameworks</h3>
+            {% for f in fpriv %}
+                {{ generateCard(f) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
