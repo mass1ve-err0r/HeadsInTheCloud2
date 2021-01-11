@@ -134,3 +134,9 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,pycharm+all,venv
+
+### custom ###
+# irgnore actual headers
+static/cdn
+
+# End of custom
