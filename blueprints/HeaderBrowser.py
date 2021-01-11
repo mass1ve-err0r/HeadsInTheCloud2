@@ -18,19 +18,28 @@ async def find_list(keyword, iso, target):
     if keyword == "public" and iso == 14:
         return Mapping14.Mapping14Public.get(target)
     elif keyword == "public" and iso == 13:
-        return _13_public
+        return Mapping13.Mapping13Public.get(target)
     elif keyword == "public" and iso == 12:
         return Mapping12.Mapping12Public.get(target)
     elif keyword == "private" and iso == 14:
         return Mapping14.Mapping14Private.get(target)
     elif keyword == "private" and iso == 13:
-        return _13_private
+        return Mapping13.Mapping13Private.get(target)
     elif keyword == "private" and iso == 12:
         return Mapping12.Mapping12Private.get(target)
     elif keyword == "dylib" and iso == 12:
         return Mapping12.Mapping12Libraries.get(target)
     else:
         return None
+
+
+async def version_stringify(version):
+    if version == 12:
+        return "12.1.2"
+    elif version == 13:
+        return "13.5"
+    elif version == 14:
+        return "14.0"
 
 
 # -*- Routes -*-
@@ -55,23 +64,27 @@ async def selectFramework(request, version):
         raise NotFound("Nope")
     template = request.app.J2env.get_template('/pages/FrameworkSelector.jinja2')
     _html = None
+    versionPrecise = await version_stringify(version)
     if version == 14:
         _html = await template.render_async(title="Select Framework | HITC2",
                                             showNavbarTitle=True,
-                                            secondNavbarIOS=version,
+                                            ver=version,
+                                            secondNavbarIOS=versionPrecise,
                                             fpub=_14_public,
                                             fpriv=_14_private)
     elif version == 13:
         _html = await template.render_async(title="Select Framework | HITC2",
                                             showNavbarTitle=True,
-                                            secondNavbarIOS=version,
+                                            ver=version,
+                                            secondNavbarIOS=versionPrecise,
                                             prtcls=True,
                                             fpub=_13_public,
                                             fpriv=_13_private)
     else:
         _html = await template.render_async(title="Select Framework / Library | HITC2",
                                             showNavbarTitle=True,
-                                            secondNavbarIOS=version,
+                                            ver=version,
+                                            secondNavbarIOS=versionPrecise,
                                             fpub=_12_public,
                                             fpriv=_12_private,
                                             prtcls=True,
@@ -95,12 +108,21 @@ async def selectHeader(request, version, framework):
     hdrs = await find_list(listType, version, framework)
     if hdrs is None:
         raise NotFound("No bro.")
+    versionPrecise = await version_stringify(version)
     _html = await template.render_async(title=f"Browsing {framework} | HITC2",
                                         showNavbarTitle=True,
-                                        secondNavbarIOS=version,
+                                        ver=version,
+                                        secondNavbarIOS=versionPrecise,
                                         frame=framework,
                                         heads=hdrs)
     return html(_html)
+
+
+@HeaderBrowserBP.route('/sdks/<version:int>/protocols/<hdr:string>')
+async def viewProtocolHeader(request, version, hdr):
+    fName = f"cdn/headers/SDK{version}/protocols/{hdr}.html"
+    target_url = request.app.url_for('static', filename=fName)
+    return redirect(target_url)
 
 
 @HeaderBrowserBP.route('/sdks/<version:int>/<framework:string>/<hdr:string>')
