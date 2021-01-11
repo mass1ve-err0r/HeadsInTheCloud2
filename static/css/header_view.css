@@ -1,4 +1,5 @@
 body {
+    font-family: "Open Sans", sans-serif;
     background-color: #2D2B2E;
 }
 
@@ -56,8 +57,8 @@ pre {
 .highlight .ni { color: #000000 } /* Name.Entity */
 .highlight .ne { color: #000000 } /* Name.Exception */
 .highlight .nf { color: #45B9D9 } /* Name.Function */
-.highlight .nl { color: #000000 } /* Name.Label */
-.highlight .nn { color: #000000 } /* Name.Namespace */
+.highlight .nl { color: #45B9D9 } /* Name.Label */
+.highlight .nn { color: #EA4A77 } /* Name.Namespace */
 .highlight .nx { color: #000000 } /* Name.Other */
 .highlight .py { color: #000000 } /* Name.Property */
 .highlight .nt { color: #000000 } /* Name.Tag */
