@@ -3,9 +3,9 @@
 {% macro generateCard(frameworkName, extra) -%}
     <div class="col pb-3">
         {% if extra %}
-            <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=secondNavbarIOS, framework=frameworkName, type=extra) }}" target="_blank">
+            <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=ver, framework=frameworkName, type=extra) }}" target="_blank">
         {% else %}
-            <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=secondNavbarIOS, framework=frameworkName) }}" target="_blank">
+            <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=ver, framework=frameworkName) }}" target="_blank">
         {% endif %}
             <div class="ccard">
                 <div class="ccard-body d-flex align-items-center justify-content-center">
@@ -34,7 +34,7 @@
         <div class="row row-cols-1">
             {% if prtcls %}
                 <div class="col pb-3">
-                    <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=secondNavbarIOS, framework="protocols", type="protocols") }}" target="_blank">
+                    <a href="{{ url_for('HeaderBrowserBP.selectHeader', version=ver, framework="protocols", type="protocols") }}" target="_blank">
                         <div class="ccard">
                             <div class="ccard-body d-flex align-items-center justify-content-center">
                                 <h2 class="text-break">Protocols</h2>
