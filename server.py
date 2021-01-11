@@ -31,13 +31,5 @@ from blueprints.HeaderBrowser import HeaderBrowserBP
 app.blueprint(HeaderBrowserBP)
 
 
-# -*- DEBUG HEADERS -*-
-@app.middleware('response')
-async def debug_headers(req, res):
-    res.headers['Cache-Control'] = "no-cache, no-store, must-revalidate"
-    res.headers['Pragma'] = "no-cache"
-    res.headers['Expires'] = "0"
-
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True, workers=2)
