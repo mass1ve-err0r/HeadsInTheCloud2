@@ -1,0 +1,16 @@
+{% extends '_Foundation.jinja2' %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <div class="container text-center">
+                <h1 class="text-white pb-2"><span style="font-weight: bold;">:(</span></h1>
+                <br>
+                <p class="lead text-white pb-2">
+                    Nothing to see under this URL.
+                </p>
+                <a class="btn btn-primary" href="{{ url_for('HeaderBrowserBP.home')}}" role="button">Return to Homepage</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
